@@ -32,3 +32,11 @@
      $self->make_executable($result);
    }
  }
+--- t/Sample/script.orig	2004-11-30 14:19:19.000000000 +0100
++++ t/Sample/script	2004-12-02 23:14:34.252385672 +0100
+@@ -1,4 +1,4 @@
+-#!perl -w
++#!/usr/bin/perl -w
+ 
+ # NOTE: the manifypods test expects no pod in this file
+ 
