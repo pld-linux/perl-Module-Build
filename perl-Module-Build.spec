@@ -8,13 +8,13 @@
 Summary:	Module::Build - build and install Perl modules
 Summary(pl):	Module::Build - budowanie i instalowanie modu³ów Perla
 Name:		perl-Module-Build
-Version:	0.25
-Release:	5
+Version:	0.2605
+Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	fbcf9fcbd1de321eb781ee8271bffd73
+# Source0-md5:	bd58160de80e8d9c5ca6aa7bb603b6ca
 Patch0:		%{name}-startperl.patch
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -38,6 +38,7 @@ Perla. Ma byæ zamiennikiem ExtUtils::MakeMaker.
 	installdirs=vendor \
 	destdir=$RPM_BUILD_ROOT
 ./Build
+
 %{?with_tests:./Build test}
 
 %install
@@ -51,11 +52,14 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes
+%attr(755,root,root) %{_bindir}/*
 %{perl_vendorlib}/Module/Build.pm
 %dir %{perl_vendorlib}/Module/Build
 %{perl_vendorlib}/Module/Build/*.pm
 %dir %{perl_vendorlib}/Module/Build/Platform
 %{perl_vendorlib}/Module/Build/Platform/Unix.pm
-%{_mandir}/man3/*
-# We don't need them, i guess
-%exclude %{_mandir}/man3/Module::Build::Platform::*
+%{_mandir}/man1/*
+%{_mandir}/man3/Module::Build.*
+%{_mandir}/man3/Module::Build::PP*
+%{_mandir}/man3/Module::Build::[!P]*
+%{_mandir}/man3/Module::Build::Platform::Unix*
