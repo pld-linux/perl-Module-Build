@@ -8,12 +8,12 @@
 Summary:	Module::Build - build and install Perl modules
 Summary(pl):	Module::Build - budowanie i instalowanie modu³ów Perla
 Name:		perl-Module-Build
-Version:	0.18
+Version:	0.20
 Release:	1
 License:	GPL or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	18f35dc7e5751f8e56554f564293d0bc
+# Source0-md5:	0a9e596924b9ef35142d085a5ef80294
 BuildRequires:	perl-devel >= 5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildArch:	noarch
@@ -32,13 +32,8 @@ Perla. Ma byæ zamiennikiem ExtUtils::MakeMaker.
 
 %build
 %{__perl} Build.PL \
-	config="sitelib=%{perl_vendorlib} sitearch=%{perl_vendorarch}"
-
+	installdirs=vendor
 ./Build
-
-for f in `find lib -name '*.pm'`; do
-	pod2man $f `basename $f .pm`.3pm
-done
 
 %{!?_without_tests:./Build test}
 
@@ -47,13 +42,6 @@ rm -rf $RPM_BUILD_ROOT
 
 ./Build install \
 	destdir=$RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_mandir}/man3
-
-install Build.3pm $RPM_BUILD_ROOT%{_mandir}/man3/Module::Build.3pm
-install Base.3pm $RPM_BUILD_ROOT%{_mandir}/man3/Module::Build::Base.3pm
-install Compat.3pm $RPM_BUILD_ROOT%{_mandir}/man3/Module::Build::Compat.3pm
-install Unix.3pm $RPM_BUILD_ROOT%{_mandir}/man3/Module::Build::Platform::Unix.3pm
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -67,3 +55,5 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{perl_vendorlib}/Module/Build/Platform
 %{perl_vendorlib}/Module/Build/Platform/Unix.pm
 %{_mandir}/man3/*
+# We don't need them, i guess
+%exclude %{_mandir}/man3/Module::Build::Platform::*
