@@ -1,7 +1,7 @@
-
+#
 # Conditional build:
 %bcond_without	tests	# do not perform "./Build test"
-
+#
 %include	/usr/lib/rpm/macros.perl
 %define	pdir	Module
 %define	pnam	Build
@@ -9,11 +9,12 @@ Summary:	Module::Build - build and install Perl modules
 Summary(pl):	Module::Build - budowanie i instalowanie modu³ów Perla
 Name:		perl-Module-Build
 Version:	0.21
-Release:	1
+Release:	2
 License:	GPL or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	3b9b9f5ea58d6a8250737555aa8b6caf
+Patch0:		%{name}-config.patch
 BuildRequires:	perl-devel >= 5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildArch:	noarch
@@ -29,6 +30,7 @@ Perla. Ma byæ zamiennikiem ExtUtils::MakeMaker.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
+%patch -p1
 
 %build
 %{__perl} Build.PL \
