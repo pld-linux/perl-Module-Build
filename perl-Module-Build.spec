@@ -6,7 +6,7 @@
 %define		pdir	Module
 %define		pnam	Build
 Summary:	Module::Build - build and install Perl modules
-Summary(pl):	Module::Build - budowanie i instalowanie modu≥Ûw Perla
+Summary(pl.UTF-8):   Module::Build - budowanie i instalowanie modu≈Ç√≥w Perla
 Name:		perl-Module-Build
 Version:	0.2806
 Release:	1
@@ -32,9 +32,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Module::Build is a Perl module to build and install Perl modules. It
 is meant to be a replacement for ExtUtils::MakeMaker.
 
-%description -l pl
-Module::Build to modu≥ Perla do budowania i instalowania modu≥Ûw
-Perla. Ma byÊ zamiennikiem ExtUtils::MakeMaker.
+%description -l pl.UTF-8
+Module::Build to modu≈Ç Perla do budowania i instalowania modu≈Ç√≥w
+Perla. Ma byƒá zamiennikiem ExtUtils::MakeMaker.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
