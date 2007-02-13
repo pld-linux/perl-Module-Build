@@ -6,7 +6,7 @@
 %define		pdir	Module
 %define		pnam	Build
 Summary:	Module::Build - build and install Perl modules
-Summary(pl.UTF-8):   Module::Build - budowanie i instalowanie modułów Perla
+Summary(pl.UTF-8):	Module::Build - budowanie i instalowanie modułów Perla
 Name:		perl-Module-Build
 Version:	0.2806
 Release:	1
