@@ -21,17 +21,6 @@
  
  sub _construct {
    my $self = shift()->SUPER::_construct(@_);
---- Module-Build-0.2806/lib/Module/Build/Base.pm.orig	2006-12-16 05:17:25.000000000 +0100
-+++ Module-Build-0.2806/lib/Module/Build/Base.pm	2006-12-22 10:52:15.013856747 +0100
-@@ -2212,7 +2212,7 @@
-   
-   foreach my $file (keys %$files) {
-     my $result = $self->copy_if_modified($file, $script_dir, 'flatten') or next;
--    $self->fix_shebang_line($result) unless $self->os_type eq 'VMS';
-+#   $self->fix_shebang_line($result) unless $self->os_type eq 'VMS';
-     $self->make_executable($result);
-   }
- }
 --- Module-Build-0.2806/t/runthrough.t.orig	2006-12-22 12:29:34.390623866 +0100
 +++ Module-Build-0.2806/t/runthrough.t	2006-12-22 12:26:36.836505633 +0100
 @@ -29,7 +29,7 @@
@@ -43,3 +32,14 @@
  print "Hello, World!\n";
  ---
  $dist->add_file( 'test.pl', <<'---' );
+--- Module-Build-0.2808/lib/Module/Build/Base.pm.orig	2007-04-28 19:50:55.000000000 +0200
++++ Module-Build-0.2808/lib/Module/Build/Base.pm	2007-04-30 13:28:03.047975140 +0200
+@@ -2292,7 +2292,7 @@
+   
+   foreach my $file (keys %$files) {
+     my $result = $self->copy_if_modified($file, $script_dir, 'flatten') or next;
+-    $self->fix_shebang_line($result) unless $self->is_vmsish;
++#   $self->fix_shebang_line($result) unless $self->is_vmsish;
+     $self->make_executable($result);
+   }
+ }
