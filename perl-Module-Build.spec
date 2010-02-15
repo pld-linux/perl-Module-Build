@@ -10,6 +10,7 @@ Summary(pl.UTF-8):	Module::Build - budowanie i instalowanie modułów Perla
 Name:		perl-Module-Build
 Version:	0.3603
 Release:	1
+Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
