@@ -8,13 +8,13 @@
 Summary:	Module::Build - build and install Perl modules
 Summary(pl.UTF-8):	Module::Build - budowanie i instalowanie modułów Perla
 Name:		perl-Module-Build
-Version:	0.340201
+Version:	0.3603
 Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/Module/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	f5aa70b86773ca132df054da4e7695bb
+# Source0-md5:	3c45872f65ca7f466ac1990be2312ce8
 Patch0:		%{name}-startperl.patch
 URL:		http://search.cpan.org/dist/Module-Build/
 BuildRequires:	perl(File::Spec) >= 0.82
@@ -51,7 +51,7 @@ Perla. Ma być zamiennikiem ExtUtils::MakeMaker.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-./Build install 
+./Build install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
