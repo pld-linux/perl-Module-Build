@@ -19,19 +19,21 @@ Source0:	http://www.cpan.org/modules/by-authors/id/D/DA/DAGOLDEN/%{pdir}-%{pnam}
 Patch0:		%{name}-startperl.patch
 URL:		http://search.cpan.org/dist/Module-Build/
 BuildRequires:	perl(File::Spec) >= 0.82
-%if %{with tests}
-BuildRequires:	perl-CPAN-Meta
-BuildRequires:	perl-ExtUtils-CBuilder >= 0.27
-BuildRequires:	perl-ExtUtils-ParseXS >= 1.02
-BuildRequires:	perl-Parse-CPAN-Meta >= 1.4401
-BuildRequires:	perl-YAML > 0.49_01
-%endif
-BuildRequires:	perl-CPAN-Meta-YAML
-BuildRequires:	perl-Module-Metadata >= 1.000002
-BuildRequires:	perl-Perl-OSType >= 1.00
 BuildRequires:	perl-devel >= 1:5.8.0
-BuildRequires:	perl-version >= 1:0.87
 BuildRequires:	rpm-perlprov >= 4.1-13
+%if %{with tests}
+BuildRequires:	perl-CPAN-Meta >= 2.110420
+BuildRequires:	perl-ExtUtils-CBuilder >= 0.27
+BuildRequires:	perl-ExtUtils-ParseXS >= 2.21
+BuildRequires:	perl-File-Temp >= 0.15
+BuildRequires:	perl-Module-Metadata >= 1.000002
+BuildRequires:	perl-Parse-CPAN-Meta >= 1.4401
+BuildRequires:	perl-Perl-OSType >= 1.00
+BuildRequires:	perl-Test-Harness >= 3.16
+BuildRequires:	perl-Test-Simple >= 0.49
+BuildRequires:	perl-YAML > 0.49_01
+BuildRequires:	perl-version >= 1:0.87
+%endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -60,6 +62,14 @@ rm -rf $RPM_BUILD_ROOT
 
 ./Build install
 
+%{__rm} $RPM_BUILD_ROOT%{perl_vendorlib}/Module/Build/*.pod
+%{__rm} -r $RPM_BUILD_ROOT%{perl_vendorlib}/inc
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man3/inc::*
+for s in Amiga Default EBCDIC MPEiX MacOS RiscOS VMS VOS Windows aix cygwin darwin os2 ; do
+	%{__rm} $RPM_BUILD_ROOT%{perl_vendorlib}/Module/Build/Platform/${s}.pm
+	%{__rm} $RPM_BUILD_ROOT%{_mandir}/man3/Module::Build::Platform::${s}.3pm
+done
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -73,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{perl_vendorlib}/Module/Build/Platform
 %{perl_vendorlib}/Module/Build/Platform/Unix.pm
 %{_mandir}/man1/config_data.1*
-%{_mandir}/man3/Module::Build.*
-%{_mandir}/man3/Module::Build::PP*
+%{_mandir}/man3/Module::Build.3pm*
 %{_mandir}/man3/Module::Build::[!P]*
+%{_mandir}/man3/Module::Build::PPMMaker.3pm*
 %{_mandir}/man3/Module::Build::Platform::Unix*
