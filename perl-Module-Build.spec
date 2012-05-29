@@ -8,14 +8,14 @@
 Summary:	Module::Build - build and install Perl modules
 Summary(pl.UTF-8):	Module::Build - budowanie i instalowanie modułów Perla
 Name:		perl-Module-Build
-Version:	0.3800
-Release:	2
-Epoch:		1
+Version:	0.40
+Release:	1
+Epoch:		2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-authors/id/D/DA/DAGOLDEN/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	b9e3085a2f314c2dea2274bd5ab16236
+Source0:	http://www.cpan.org/modules/by-module/Module/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	7ef4a7d968cbcd2ab7286b834f885142
 Patch0:		%{name}-startperl.patch
 URL:		http://search.cpan.org/dist/Module-Build/
 BuildRequires:	perl(File::Spec) >= 0.82
@@ -23,6 +23,7 @@ BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
 BuildRequires:	perl-CPAN-Meta >= 2.110420
+BuildRequires:	perl-CPAN-Meta-YAML >= 0.003
 BuildRequires:	perl-ExtUtils-CBuilder >= 0.27
 BuildRequires:	perl-ExtUtils-ParseXS >= 2.21
 BuildRequires:	perl-File-Temp >= 0.15
