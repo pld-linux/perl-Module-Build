@@ -8,21 +8,21 @@
 Summary:	Module::Build - build and install Perl modules
 Summary(pl.UTF-8):	Module::Build - budowanie i instalowanie modułów Perla
 Name:		perl-Module-Build
-Version:	0.40
+Version:	0.4210
 Release:	1
 Epoch:		2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/Module/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	7ef4a7d968cbcd2ab7286b834f885142
+# Source0-md5:	c346e825c077ee6e9946f47fdb1786e8
 Patch0:		%{name}-startperl.patch
 URL:		http://search.cpan.org/dist/Module-Build/
 BuildRequires:	perl(File::Spec) >= 0.82
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
-BuildRequires:	perl-CPAN-Meta >= 2.110420
+BuildRequires:	perl-CPAN-Meta >= 2.142060
 BuildRequires:	perl-CPAN-Meta-YAML >= 0.003
 BuildRequires:	perl-ExtUtils-CBuilder >= 0.27
 BuildRequires:	perl-ExtUtils-ParseXS >= 2.21
@@ -66,7 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{perl_vendorlib}/Module/Build/*.pod
 %{__rm} -r $RPM_BUILD_ROOT%{perl_vendorlib}/inc
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/man3/inc::*
-for s in Amiga Default EBCDIC MPEiX MacOS RiscOS VMS VOS Windows aix cygwin darwin os2 ; do
+for s in Default MacOS VMS VOS Windows aix cygwin darwin os2 ; do
 	%{__rm} $RPM_BUILD_ROOT%{perl_vendorlib}/Module/Build/Platform/${s}.pm
 	%{__rm} $RPM_BUILD_ROOT%{_mandir}/man3/Module::Build::Platform::${s}.3pm
 done
