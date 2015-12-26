@@ -8,14 +8,14 @@
 Summary:	Module::Build - build and install Perl modules
 Summary(pl.UTF-8):	Module::Build - budowanie i instalowanie modułów Perla
 Name:		perl-Module-Build
-Version:	0.4210
-Release:	3
+Version:	0.4214
+Release:	1
 Epoch:		2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/Module/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	c346e825c077ee6e9946f47fdb1786e8
+# Source0-md5:	7b7ca5a47bef48c50c8b5906ca3ac7fb
 Patch0:		%{name}-startperl.patch
 URL:		http://search.cpan.org/dist/Module-Build/
 BuildRequires:	perl(File::Spec) >= 0.82
@@ -64,8 +64,6 @@ rm -rf $RPM_BUILD_ROOT
 ./Build install
 
 %{__rm} $RPM_BUILD_ROOT%{perl_vendorlib}/Module/Build/*.pod
-%{__rm} -r $RPM_BUILD_ROOT%{perl_vendorlib}/inc
-%{__rm} $RPM_BUILD_ROOT%{_mandir}/man3/inc::*
 for s in Default MacOS VMS VOS Windows aix cygwin darwin os2 ; do
 	%{__rm} $RPM_BUILD_ROOT%{perl_vendorlib}/Module/Build/Platform/${s}.pm
 	%{__rm} $RPM_BUILD_ROOT%{_mandir}/man3/Module::Build::Platform::${s}.3pm
@@ -85,6 +83,6 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorlib}/Module/Build/Platform/Unix.pm
 %{_mandir}/man1/config_data.1*
 %{_mandir}/man3/Module::Build.3pm*
-%{_mandir}/man3/Module::Build::[!P]*
+%{_mandir}/man3/Module::Build::[!P]*.3pm*
 %{_mandir}/man3/Module::Build::PPMMaker.3pm*
-%{_mandir}/man3/Module::Build::Platform::Unix*
+%{_mandir}/man3/Module::Build::Platform::Unix.3pm*
