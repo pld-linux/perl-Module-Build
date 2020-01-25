@@ -2,7 +2,6 @@
 # Conditional build:
 %bcond_without	tests	# do not perform "./Build test"
 #
-%include	/usr/lib/rpm/macros.perl
 %define		pdir	Module
 %define		pnam	Build
 Summary:	Module::Build - build and install Perl modules
