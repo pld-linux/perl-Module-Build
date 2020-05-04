@@ -7,33 +7,36 @@
 Summary:	Module::Build - build and install Perl modules
 Summary(pl.UTF-8):	Module::Build - budowanie i instalowanie modułów Perla
 Name:		perl-Module-Build
-Version:	0.4229
+Version:	0.4231
 Release:	1
 Epoch:		2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/Module/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	1447d9e02e63f7a1643986789a8f1ba9
+# Source0-md5:	066b193e461d7dfe1eca17a139353001
 Patch0:		%{name}-startperl.patch
-URL:		http://search.cpan.org/dist/Module-Build/
+URL:		https://metacpan.org/release/Module-Build
 BuildRequires:	perl(File::Spec) >= 0.82
+BuildRequires:	perl(version) >= 0.87
+BuildRequires:	perl-Module-Metadata >= 1.000002
+BuildRequires:	perl-Perl-OSType >= 1.00
 BuildRequires:	perl-devel >= 1:5.8.0
+# perl-modules provides version's version without epoch, so use perl(version) dep
+#BuildRequires:	perl-version >= 1:0.87
 BuildRequires:	rpm-perlprov >= 4.1-13
+BuildRequires:	rpmbuild(macros) >= 1.745
 %if %{with tests}
 BuildRequires:	perl-CPAN-Meta >= 2.142060
 BuildRequires:	perl-CPAN-Meta-YAML >= 0.003
 BuildRequires:	perl-ExtUtils-CBuilder >= 0.27
 BuildRequires:	perl-ExtUtils-ParseXS >= 2.21
 BuildRequires:	perl-File-Temp >= 0.15
-BuildRequires:	perl-Module-Metadata >= 1.000002
 BuildRequires:	perl-Parse-CPAN-Meta >= 1.4401
-BuildRequires:	perl-Perl-OSType >= 1.00
-BuildRequires:	perl-Test-Harness >= 3.16
+BuildRequires:	perl-Test-Harness >= 3.29
 BuildRequires:	perl-Test-Simple >= 0.49
-BuildRequires:	perl-YAML > 0.49_01
-BuildRequires:	perl-version >= 1:0.87
 %endif
+BuildConflicts:	perl(CPANPLUS::Dist::Build) < 0.08
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
