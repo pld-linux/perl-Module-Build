@@ -8,7 +8,7 @@ Summary:	Module::Build - build and install Perl modules
 Summary(pl.UTF-8):	Module::Build - budowanie i instalowanie modułów Perla
 Name:		perl-Module-Build
 Version:	0.4231
-Release:	1
+Release:	2
 Epoch:		2
 # same as perl
 License:	GPL v1+ or Artistic

@@ -1,15 +1,28 @@
---- Module-Build-0.2806/lib/Module/Build/Platform/Unix.pm	2004-04-26 00:16:14.000000000 +0200
-+++ Module-Build-0.2806/lib/Module/Build/Platform/Unix.pm	2004-05-12 00:17:10.059693704 +0200
-@@ -2,6 +2,7 @@
+diff -urNp -x '*.orig' Module-Build-0.4231.org/lib/Module/Build/Base.pm Module-Build-0.4231/lib/Module/Build/Base.pm
+--- Module-Build-0.4231.org/lib/Module/Build/Base.pm	2020-01-29 08:51:23.000000000 +0100
++++ Module-Build-0.4231/lib/Module/Build/Base.pm	2022-02-21 00:14:52.613086898 +0100
+@@ -2978,7 +2978,7 @@ sub process_script_files {
  
- use strict;
+   foreach my $file (sort keys %$files) {
+     my $result = $self->copy_if_modified($file, $script_dir, 'flatten') or next;
+-    $self->fix_shebang_line($result) unless $self->is_vmsish;
++#   $self->fix_shebang_line($result) unless $self->is_vmsish;
+     $self->make_executable($result);
+   }
+ }
+diff -urNp -x '*.orig' Module-Build-0.4231.org/lib/Module/Build/Platform/Unix.pm Module-Build-0.4231/lib/Module/Build/Platform/Unix.pm
+--- Module-Build-0.4231.org/lib/Module/Build/Platform/Unix.pm	2020-01-29 08:51:23.000000000 +0100
++++ Module-Build-0.4231/lib/Module/Build/Platform/Unix.pm	2022-02-21 00:14:52.612086896 +0100
+@@ -5,6 +5,7 @@ use warnings;
+ our $VERSION = '0.4231';
+ $VERSION = eval $VERSION;
  use Module::Build::Base;
 +use Config;
  
- use vars qw(@ISA);
- @ISA = qw(Module::Build::Base);
-@@ -33,7 +34,11 @@
-   $self->SUPER::make_tarball(@_);
+ our @ISA = qw(Module::Build::Base);
+ 
+@@ -19,7 +20,11 @@ sub is_executable {
+   return +(stat $file)[2] & 0100;
  }
  
 -sub _startperl { "#! " . shift()->perl }
@@ -21,25 +34,15 @@
  
  sub _construct {
    my $self = shift()->SUPER::_construct(@_);
---- Module-Build-0.2806/t/runthrough.t.orig	2006-12-22 12:29:34.390623866 +0100
-+++ Module-Build-0.2806/t/runthrough.t	2006-12-22 12:26:36.836505633 +0100
-@@ -29,7 +29,7 @@
- $build->create_build_script;
+diff -urNp -x '*.orig' Module-Build-0.4231.org/t/runthrough.t Module-Build-0.4231/t/runthrough.t
+--- Module-Build-0.4231.org/t/runthrough.t	2020-01-29 08:51:23.000000000 +0100
++++ Module-Build-0.4231/t/runthrough.t	2022-02-21 00:14:52.612086896 +0100
+@@ -25,7 +25,7 @@ $dist->add_file( 'MANIFEST.SKIP', <<'---
+ ^MYMETA.yml$
  ---
  $dist->add_file( 'script', <<'---' );
 -#!perl -w
 +#!/usr/bin/perl -w
  print "Hello, World!\n";
  ---
- $dist->add_file( 'test.pl', <<'---' );
---- Module-Build-0.2808/lib/Module/Build/Base.pm.orig	2007-04-28 19:50:55.000000000 +0200
-+++ Module-Build-0.2808/lib/Module/Build/Base.pm	2007-04-30 13:28:03.047975140 +0200
-@@ -2292,7 +2292,7 @@
-   
-   foreach my $file (keys %$files) {
-     my $result = $self->copy_if_modified($file, $script_dir, 'flatten') or next;
--    $self->fix_shebang_line($result) unless $self->is_vmsish;
-+#   $self->fix_shebang_line($result) unless $self->is_vmsish;
-     $self->make_executable($result);
-   }
- }
+ $dist->add_file( 'lib/Simple/Script.PL', <<'---' );
